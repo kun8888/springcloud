@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: product-view-service-feign
+  zipkin:
+    base-url: http://loaclhost:9411
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
+  #  获取其他配置
+  #  profiles:
+  #    active: test
+
+#  断路器
+feign:
+  hystrix:
+    enabled: true
+
+# 跨域
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"

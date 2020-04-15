@@ -1,0 +1,30 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  cloud:
+    config:
+      label: master
+      profile: dev
+      discovery:
+        enabled: true
+        #        配置服务的application name
+        service-id: config-server
+#        Bus 内部暴露了 2 个 Endpoint，分别是 EnvironmentBusEndpoint 和 RefreshBusEndpoint，
+#       进行配置的新增/修改以及全局配置刷新。它们对应的 Endpoint id 即 url 是 bus-env 和 bus-refresh
+
+#        消息发送涉及到的 Topic 默认用的是 springCloudBus，可以配置进行修改，Group 可以设置成广播模式或使用 UUID 配合 offset 为 lastest 的模式。
+#         每个 Bus 应用都有一个对应的 Bus id
+    bus:
+#       用于开启开启/关闭 AckRemoteApplicationEvent 事件的发送
+      ack:
+        enabled: true
+#       用于开启/关闭消息记录 Trace 的 Listener
+      trace:
+        enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest

@@ -1,0 +1,21 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # 表示是否注册到服务器。 因为它本身就是服务器，所以就无需把自己注册到服务器了。
+    register-with-eureka: false
+    #  表示是否获取服务器的注册信息，和上面同理，这里也设置为 false。
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+  server:
+    # 自我保护模式。
+    enable-self-preservation: true
+    # 定义了renews 和renews threshold的比值，默认值为0.85
+    # 当server在15分钟内，比值低于percent，即少了15%的微服务心跳
+    # ，server会进入自我保护状态，Self-Preservation。
+    # 在此状态下，server不会删除注册信息，这就有可能导致在调用微服务时，实际上服务并不存在。
+    renewal-percent-threshold: 0.45
+spring:
+  application:
+    name: eureka-server
